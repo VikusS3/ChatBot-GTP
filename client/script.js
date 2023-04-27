@@ -10,10 +10,10 @@ function loader(element) {
     element.textContent = ''
 
     loadInterval = setInterval(() => {
-        // Update the text content of the loading indicator
+        //Actualizar el contenido de texto del indicador de carga 
         element.textContent += '.';
 
-        // If the loading indicator has reached three dots, reset it
+        //Si el indicador de carga ha alcanzado los tres puntos, reinícielo
         if (element.textContent === '....') {
             element.textContent = '';
         }
@@ -64,20 +64,20 @@ const handleSubmit = async (e) => {
 
   const data = new FormData(form)
 
-  // user's chatstripe
+  // banda de chat del usuario
   chatContainer.innerHTML += chatStripe(false, data.get('prompt'))
 
-  // to clear the textarea input 
+  // para borrar la entrada del área de texto
   form.reset()
 
-  // bot's chatstripe
+  // banda de chat del bot
   const uniqueId = generateUniqueId()
   chatContainer.innerHTML += chatStripe(true, " ", uniqueId)
 
-  // to focus scroll to the bottom 
+  // para enfocar desplazarse hacia abajo
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
-  // specific message div 
+  // especificar el div del mensaje
   const messageDiv = document.getElementById(uniqueId)
 
   // messageDiv.innerHTML = "..."
@@ -98,7 +98,7 @@ const handleSubmit = async (e) => {
 
   if (response.ok) {
       const data = await response.json();
-      const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+      const parsedData = data.bot.trim() // recorta los espacios finales/'\n' 
 
       typeText(messageDiv, parsedData)
   } else {
